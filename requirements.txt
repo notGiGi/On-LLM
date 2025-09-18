@@ -1,0 +1,5 @@
+﻿tokenizers==0.15.2
+transformers==4.44.2
+torch>=2.3
+numpy>=1.26
+matplotlib>=3.8
