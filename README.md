@@ -1,19 +1,18 @@
 ﻿# On-LLM
 
-Educational notebooks on LLM fundamentals: tokenization, batching, masked loss, perplexity, and attention masking (causal/padding/head), with math-first explanations and runnable PyTorch demos.
+Fundamentals of LLMs with math-first explanations and runnable PyTorch demos.
 
-## Structure
-- 
-otebooks/ — Blocked, pedagogical notebooks (Markdown + code).
-- examples/ — Small scripts that mirror notebook snippets.
-- docs/ — LaTeX/PDF or extended notes.
-- data/ — Tiny sample corpora for tokenizer demos.
+## Quickstart (one command)
 
-## Quickstart
-`ash
-python -m venv .venv && . .venv/Scripts/Activate.ps1  # Windows PowerShell
-pip install -r requirements.txt
+### Windows (PowerShell)
+scripts\install.ps1
+jupyter lab
 
+### macOS / Linux (bash)
+bash scripts/install.sh
+jupyter lab
 
-
-
+Notes:
+- The installer creates a virtual environment (or you can use Conda).
+- It installs: requirements, Jupyter Lab, Jupytext, and registers a kernel `on-llm`.
+- If `notebooks/block1_foundations.md` exists, it is converted to `.ipynb` automatically.

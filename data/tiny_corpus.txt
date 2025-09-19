@@ -1,0 +1,3 @@
+﻿the quick brown fox jumps over the lazy dog
+abracadabra abracadabra token tokenization
+subword models like bpe and unigram are common
