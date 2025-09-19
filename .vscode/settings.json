@@ -1,0 +1,19 @@
+﻿{
+  // Dile a VS Code que use el Python del venv del repo
+  // (en Windows apunta a Scripts/python.exe; en macOS/Linux la extensión detecta .venv automáticamente)
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+  "python.venvPath": "${workspaceFolder}",
+
+  // Jupyter integrado en VS Code; NO abre navegador
+  "jupyter.jupyterServerType": "local",
+  "jupyter.notebookFileRoot": "${workspaceFolder}",
+  "jupyter.askForKernelRestart": false,
+
+  // UX: notebooks más limpios
+  "notebook.output.textLineLimit": 500,
+  "notebook.cellToolbarVisibility": "hover",
+
+  // Formato recomendado
+  "editor.formatOnSave": true,
+  "files.eol": "\n"
+}

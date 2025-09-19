@@ -1,0 +1,39 @@
+﻿{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Setup (Windows, pip)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy", "Bypass",
+        "-Command",
+        "if (!(Test-Path .venv)) { py -3 -m venv .venv }; . .\\.venv\\Scripts\\Activate.ps1; python -m pip install -U pip setuptools wheel; pip install -r requirements.txt jupyterlab notebook jupytext ipykernel; python -m ipykernel install --user --name on-llm --display-name 'Python (on-llm)';"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Setup (macOS/Linux, pip)",
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "-lc",
+        "python3 -m venv .venv && source .venv/bin/activate && python -m pip install -U pip setuptools wheel && pip install -r requirements.txt jupyterlab notebook jupytext ipykernel && python -m ipykernel install --user --name on-llm --display-name 'Python (on-llm)'"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Run examples",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy", "Bypass",
+        "-Command",
+        ". .\\.venv\\Scripts\\Activate.ps1; python examples\\masked_loss_demo.py; python examples\\attention_mask_demo.py"
+      ],
+      "problemMatcher": []
+    }
+  ]
+}
