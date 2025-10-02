@@ -1,31 +1,28 @@
-﻿Param(
-  [switch]$Conda,
-  [switch]$NoJupytext
-)
-
+﻿# scripts\install.ps1
 $ErrorActionPreference = "Stop"
-Write-Host "== On-LLM :: Windows setup ==" -ForegroundColor Cyan
 
-# Activar conda o venv
-if ($Conda) {
-  Write-Host "Using Conda env: on-llm" -ForegroundColor Yellow
-  conda env remove -n on-llm -y 2>$null | Out-Null
-  conda create -n on-llm python=3.11 -y | Out-Null
-  conda activate on-llm
-} else {
-  if (-not (Test-Path ".\.venv")) { python -m venv .venv }
-  . .\.venv\Scripts\Activate.ps1
+# 1) Crear/usar venv sin recrearlo si ya existe
+if (-not (Test-Path ".venv")) {
+  Write-Host ">>> Creating venv at .venv"
+  py -3 -m venv .venv
 }
 
-python -m pip install -U pip setuptools wheel
+# 2) Activar venv
+.\.venv\Scripts\Activate
+
+# 3) Instalar deps
+Write-Host ">>> Upgrading pip"
+python -m pip install --upgrade pip
+Write-Host ">>> Installing requirements"
 pip install -r requirements.txt
-pip install jupyterlab notebook ipykernel
-if (-not $NoJupytext) { pip install jupytext }
 
-if ((-not $NoJupytext) -and (Test-Path "notebooks\block1_foundations.md")) {
-  jupytext --to ipynb notebooks\block1_foundations.md
+# 4) Registrar kernel (no inicia servidor)
+Write-Host ">>> Registering Jupyter kernel 'on-llm'"
+python -m ipykernel install --user --name on-llm --display-name "Python (on-llm)"
+
+# 5) (Opcional) convertir .md a .ipynb si existe
+if (Test-Path "notebooks\block1_foundations.md") {
+  jupytext --to notebook notebooks\block1_foundations.md
 }
 
-python -m ipykernel install --user --name on-llm
-
-Write-Host "`n✔ Setup complete. Launch Jupyter with:  jupyter lab" -ForegroundColor Green
+Write-Host "✅ Listo. Abre VS Code, selecciona el kernel 'Python (on-llm)' y trabaja."

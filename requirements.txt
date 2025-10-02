@@ -1,5 +1,11 @@
-﻿torch>=2.3
-tokenizers==0.15.2
-transformers==4.44.2
-numpy>=1.26
+﻿# Core
+torch==2.4.1
+transformers==4.56.2
+tokenizers==0.22.1
+numpy>=1.26,<3.0
 matplotlib>=3.8
+
+# Jupyter & kernel
+jupyterlab>=4.2
+jupytext>=1.16
+ipykernel>=6.29
